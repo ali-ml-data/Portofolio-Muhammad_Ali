@@ -127,6 +127,7 @@ footer p{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacin
   .contact-block{padding:3rem 1.5rem}
   footer{flex-direction:column;gap:.5rem;text-align:center}
 }
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23111'/><text x='50' y='72' font-size='60' text-anchor='middle' fill='%23f5c77e'>A</text></svg>">
 </style>
   <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.1/dist/html2pdf.bundle.min.js"></script>
   <script>
@@ -136,8 +137,6 @@ function downloadPDF() {
   btn.textContent = 'Generating...';
 
   document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-  <!-- Option 2: SVG favicon inline (no external file) -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23111'/><text x='50' y='72' font-size='60' text-anchor='middle' fill='%23f5c77e'>A</text></svg>">
   setTimeout(() => {
     const opt = {
       margin: 0,
