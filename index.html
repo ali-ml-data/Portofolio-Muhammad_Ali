@@ -127,32 +127,47 @@ footer p{font-family:var(--mono);font-size:11px;color:var(--text3);letter-spacin
   .contact-block{padding:3rem 1.5rem}
   footer{flex-direction:column;gap:.5rem;text-align:center}
 }
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</style>
   <script>
 function downloadPDF() {
   const btn = document.querySelector('[onclick="downloadPDF()"]');
-  btn.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Generating...';
 
-  const opt = {
-    margin: 0,
-    filename: 'Portfolio-Muhammad-Ali.pdf',
-    image: { type: 'jpeg', quality: 0.95 },
-    html2canvas: { 
-      scale: 1.5, 
-      useCORS: true, 
-      scrollY: 0,
-      windowWidth: 1080
-    },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
 
-  html2pdf().set(opt).from(document.body).save().then(() => {
-    btn.style.display = '';
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-  });
+  setTimeout(() => {
+    const opt = {
+      margin: 0,
+      filename: 'Portfolio-Muhammad-Ali.pdf',
+      image: { type: 'jpeg', quality: 0.92 },
+      html2canvas: {
+        scale: 1.2,
+        useCORS: true,
+        allowTaint: true,
+        scrollY: 0,
+        windowWidth: document.documentElement.scrollWidth,
+        windowHeight: document.documentElement.scrollHeight
+      },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf()
+      .set(opt)
+      .from(document.body)
+      .save()
+      .then(() => {
+        btn.disabled = false;
+        btn.textContent = '⬇ Download PDF';
+      })
+      .catch(err => {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = '⬇ Download PDF';
+      });
+  }, 500);
 }
 </script>
-</style>
 </head>
 <body>
 
